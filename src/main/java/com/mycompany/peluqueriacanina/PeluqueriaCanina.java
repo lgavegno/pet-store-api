@@ -1,6 +1,7 @@
 
 package com.mycompany.peluqueriacanina;
 
+import com.mycompany.peluqueriacanina.view.CargaDatos;
 import com.mycompany.peluqueriacanina.view.Principal;
 
 
@@ -12,5 +13,9 @@ public class PeluqueriaCanina {
         princ.setVisible(true);
         princ.setLocationRelativeTo(null);
         
-    }   
+    }  
 }
+
+    
+
+

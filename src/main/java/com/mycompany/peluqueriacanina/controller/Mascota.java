@@ -1,4 +1,3 @@
-
 package com.mycompany.peluqueriacanina.controller;
 
 import javax.persistence.Entity;
@@ -16,20 +15,22 @@ public class Mascota {
     private String nombre;
     private String raza;
     private String color;
+    private String alergico;
     private String atencion_especial;
     private String observaciones;
-    
+
     @OneToOne
     private Duenio unDuenio;
 
     public Mascota() {
     }
 
-    public Mascota(int num_cliente, String nombre, String raza, String color, String atencion_especial, String observaciones, Duenio unDuenio) {
+    public Mascota(int num_cliente, String nombre, String raza, String color, String alergico, String atencion_especial, String observaciones, Duenio unDuenio) {
         this.num_cliente = num_cliente;
         this.nombre = nombre;
         this.raza = raza;
         this.color = color;
+        this.alergico = alergico;
         this.atencion_especial = atencion_especial;
         this.observaciones = observaciones;
         this.unDuenio = unDuenio;
@@ -71,6 +72,14 @@ public class Mascota {
         return atencion_especial;
     }
 
+    public String getAlergico() {
+        return alergico;
+    }
+
+    public void setAlergico(String alergico) {
+        this.alergico = alergico;
+    }
+
     public void setAtencion_especial(String atencion_especial) {
         this.atencion_especial = atencion_especial;
     }
@@ -90,6 +99,5 @@ public class Mascota {
     public void setUnDuenio(Duenio unDuenio) {
         this.unDuenio = unDuenio;
     }
-    
-    
+
 }

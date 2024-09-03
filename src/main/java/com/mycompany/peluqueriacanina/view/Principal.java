@@ -1,15 +1,11 @@
-
 package com.mycompany.peluqueriacanina.view;
-
 
 public class Principal extends javax.swing.JFrame {
 
-  
     public Principal() {
         initComponents();
     }
 
-  
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -117,11 +113,11 @@ public class Principal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCargaDatosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCargaDatosActionPerformed
-        
+
         CargaDatos pantalla = new CargaDatos();
         pantalla.setVisible(true);
         pantalla.setLocationRelativeTo(null);
-        
+
     }//GEN-LAST:event_btnCargaDatosActionPerformed
 
 

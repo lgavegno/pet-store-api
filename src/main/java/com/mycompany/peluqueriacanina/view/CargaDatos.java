@@ -1,14 +1,17 @@
-
 package com.mycompany.peluqueriacanina.view;
 
+import com.mycompany.peluqueriacanina.controller.Controladora;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 public class CargaDatos extends javax.swing.JFrame {
 
-  
+    Controladora control = new Controladora();
+    
     public CargaDatos() {
+        //control = new Controladora();
         initComponents();
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -36,7 +39,6 @@ public class CargaDatos extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnGuardar = new javax.swing.JButton();
         btnLimpiar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -169,6 +171,11 @@ public class CargaDatos extends javax.swing.JFrame {
         btnGuardar.setForeground(new java.awt.Color(51, 51, 51));
         btnGuardar.setIcon(new javax.swing.ImageIcon("E:\\Repositorios\\Recursos\\iconSave.png")); // NOI18N
         btnGuardar.setText(" Guardar");
+        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnGuardarActionPerformed(evt);
+            }
+        });
 
         btnLimpiar.setBackground(new java.awt.Color(153, 153, 153));
         btnLimpiar.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -178,13 +185,6 @@ public class CargaDatos extends javax.swing.JFrame {
         btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarActionPerformed(evt);
-            }
-        });
-
-        jButton1.setText("jButton1");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
             }
         });
 
@@ -209,10 +209,6 @@ public class CargaDatos extends javax.swing.JFrame {
                         .addGap(227, 227, 227)
                         .addComponent(jLabel1)))
                 .addContainerGap(234, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(135, 135, 135))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,9 +222,7 @@ public class CargaDatos extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 397, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(3, 3, 3)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnLimpiar)
                     .addComponent(btnGuardar))
@@ -272,17 +266,34 @@ public class CargaDatos extends javax.swing.JFrame {
         cmbAtEsp.setSelectedIndex(0);
     }//GEN-LAST:event_btnLimpiarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
+      
+        String nombreMasco = txtNombre.getText();
+        String raza = txtRaza.getText();
+        String color = txtColor.getText();
+        String observaciones = txtObservaciones.getText();
+        String alergico = (String) cmbAlergico.getSelectedItem();
+         String atenEsp = (String) cmbAtEsp.getSelectedItem();
+        
+        String nombreDuenio = txtNomDuenio.getText();
+        String celDuenio = txtCelDuenio.getText();
+            
+        control.guardar(nombreMasco, raza, color, observaciones, alergico, atenEsp, nombreDuenio, celDuenio);
+        
+        JOptionPane optionPane = new JOptionPane("Guardado Correctamente");
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog("Guardado Exitoso");
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+        
+    }//GEN-LAST:event_btnGuardarActionPerformed
 
- 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnGuardar;
     private javax.swing.JButton btnLimpiar;
     private javax.swing.JComboBox<String> cmbAlergico;
     private javax.swing.JComboBox<String> cmbAtEsp;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;

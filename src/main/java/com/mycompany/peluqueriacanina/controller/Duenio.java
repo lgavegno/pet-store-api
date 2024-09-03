@@ -1,13 +1,13 @@
-
 package com.mycompany.peluqueriacanina.controller;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
-public class Duenio {
+public class Duenio implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
@@ -47,6 +47,5 @@ public class Duenio {
     public void setCelDuenio(String celDuenio) {
         this.celDuenio = celDuenio;
     }
-    
-    
+
 }
