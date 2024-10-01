@@ -1,12 +1,10 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package com.mycompany.peluqueriacanina.view;
 
 import com.mycompany.peluqueriacanina.controller.Controladora;
 import com.mycompany.peluqueriacanina.controller.Mascota;
 import java.util.List;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class VerDatos extends javax.swing.JFrame {
@@ -148,7 +146,24 @@ public class VerDatos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
-        // TODO add your handling code here:
+        if (tablaMascotas.getRowCount() > 0) {
+            //Controlo que se haya seleccionado a una mascota
+            if (tablaMascotas.getSelectedRow() != -1) {
+
+                //Obtenemos el Id de la persona a editar
+                int num_cliente = Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(), 0)));
+                ModificarDatos pantallaModif = new ModificarDatos(num_cliente);
+                pantallaModif.setVisible(true);
+                pantallaModif.setLocation(null);
+
+                //Cierra la ventana
+                this.dispose();
+
+            } else {
+                mostrarMensaje("No hay nada para eliminar en la tabla", "Error", "Error al eliminar");
+            }
+        }
+
     }//GEN-LAST:event_btnEditarActionPerformed
 
     //Metodo que abre la tabla
@@ -157,9 +172,41 @@ public class VerDatos extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowOpened
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        //Controlo que la tabla no esté vacía
+        if (tablaMascotas.getRowCount() > 0) {
+            //Controlo que se haya seleccionado a una mascota
+            if (tablaMascotas.getSelectedRow() != -1) {
+                //obtenemos el ID de la mascota a eliminar
+                int num_cliente = Integer.parseInt(String.valueOf(tablaMascotas.getValueAt(tablaMascotas.getSelectedRow(), 0)));
+
+                //llamo al metodo borrar
+                control.borrarMascota(num_cliente);
+
+                //aviso al usuario que borrò correctamente
+                mostrarMensaje("Mascota eliminada correctamente", "Info", "Borrado de mascota");
+                cargarTabla();
+
+            } else {
+                mostrarMensaje("No selecciono ninguna mascota", "Error", "Error al eliminar");
+            }
+        } else {
+            mostrarMensaje("No hay nada para eliminar en la tabla", "Error", "Error al eliminar");
+        }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
+    public void mostrarMensaje(String mensaje, String tipo, String titulo) {
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        if (tipo.equals("info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (tipo.equals("Error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+
+        optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnEditar;
@@ -172,7 +219,7 @@ public class VerDatos extends javax.swing.JFrame {
     private javax.swing.JTable tablaMascotas;
     // End of variables declaration//GEN-END:variables
 
-    private void cargarTabla() {
+    public void cargarTabla() {
         //Definimos el modelo de la tabla
         DefaultTableModel modeloTabla = new DefaultTableModel() {
 

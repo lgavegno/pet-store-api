@@ -34,6 +34,11 @@ public class Principal extends javax.swing.JFrame {
 
         btnSalir.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnSalir.setText("Salir");
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSalirActionPerformed(evt);
+            }
+        });
 
         btnCargaDatos.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         btnCargaDatos.setText("Cargar Datos");
@@ -67,7 +72,7 @@ public class Principal extends javax.swing.JFrame {
                 .addContainerGap(126, Short.MAX_VALUE))
         );
 
-        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\Repositorios\\Recursos\\milo1.png")); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon("E:\\CURSOS PROG 4.0\\Repositorios\\Recursos\\milo1.png")); // NOI18N
         jLabel2.setText("jLabel2");
         jLabel2.setMaximumSize(new java.awt.Dimension(250, 250));
         jLabel2.setMinimumSize(new java.awt.Dimension(250, 250));
@@ -130,6 +135,10 @@ public class Principal extends javax.swing.JFrame {
         pantalla.setVisible(true);
         pantalla.setLocationRelativeTo(null);
     }//GEN-LAST:event_btnVerDatosActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        System.exit(0);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

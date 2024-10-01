@@ -33,4 +33,50 @@ public class Controladora {
         return controlPersis.traerMascotas();
 
     }
+
+    public void borrarMascota(int num_cliente) {
+        controlPersis.borrarMascota(num_cliente);
+
+    }
+
+    //este metodo se crea solo desde modificar datos, ver por que?
+    public Mascota traerMascotas(int num_cliente) {
+        return controlPersis.traerMascotas(num_cliente);
+    }
+
+    public void modificarMascota(Mascota masco, String nombreMasco, String raza, String color,
+            String observaciones, String alergico, String atenEsp, String nombreDuenio, String celDuenio) {
+        masco.setNombre(nombreMasco);
+        masco.setRaza(raza);
+        masco.setColor(color);
+        masco.setObservaciones(observaciones);
+        masco.setAtencion_especial(atenEsp);
+        masco.setAlergico(alergico);
+        
+        //modificamos mascota
+        controlPersis.modificarMascota(masco);
+        
+        //seteo nuevos valores del dueño
+        Duenio dueno = this.buscarDuenio(masco.getUnDuenio().getId_duenio());
+        dueno.setCelDuenio(celDuenio);
+        dueno.setNombre(nombreDuenio);
+        
+        //llamar al modificar Dueño
+        this.modificarDuenio(dueno);
+        
+        
+    }
+
+    private Duenio buscarDuenio(int id_duenio) {
+        return controlPersis.traerDuenio(id_duenio);
+    
+    }
+
+    private void modificarDuenio(Duenio dueno) {
+        controlPersis.modificarDuenio(dueno);
+    }
+
+
+
+    
 }
