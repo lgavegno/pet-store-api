@@ -166,6 +166,7 @@ public class ModificarDatos extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/milo1.png"))); // NOI18N
         jLabel2.setMaximumSize(new java.awt.Dimension(250, 250));
         jLabel2.setMinimumSize(new java.awt.Dimension(250, 250));
 
