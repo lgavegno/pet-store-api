@@ -42,8 +42,8 @@ A comprehensive Spring Boot application for managing pets and their owners with 
 
 1. **Clone the repository**
    ```bash
-   git clone https://github.com/your-username/pet-store.git
-   cd pet-store
+   git clone https://github.com/lgavegno/pet-store-api.git
+   cd pet-store-api
    ```
 
 2. **Configure the database**
