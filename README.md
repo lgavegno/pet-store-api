@@ -1,118 +1,194 @@
+# 🐾 Pet Store API
 
-# 🐾 Peluquería Canina
+A comprehensive Spring Boot application for managing pets and their owners with JWT-based authentication and authorization.
 
-Este proyecto es una aplicación de escritorio Java que permite la gestión de una base de datos para una peluquería canina. Implementa funcionalidades CRUD (Crear, Leer, Actualizar y Borrar) sobre entidades `Mascota` y `Dueño`, utilizando JPA (EclipseLink) y una base de datos MySQL.
+## 🚀 Features
 
----
+- **RESTful API** with Spring Boot
+- **JWT Authentication** with Spring Security
+- **Docker** support with MySQL
+- **OpenAPI 3.0** Documentation
+- **Actuator** for monitoring and metrics
+- **Unit & Integration Tests** with JUnit 5 and Mockito
+- **Logging** with SLF4J and Logback
+- **CORS** enabled
+- **H2** in-memory database for testing
+- **MySQL** for production
 
-## 📦 Tecnologías Utilizadas
+## �️ Technologies
 
-* **Java 17**
-* **Maven**
-* **JPA (EclipseLink 2.7.12)**
-* **MySQL Connector/J (8.1.0)**
-* **Jakarta Persistence 2.2.3**
+- **Java 17**
+- **Spring Boot 3.x**
+- **Spring Security** with JWT
+- **Spring Data JPA** with Hibernate
+- **Lombok**
+- **MapStruct**
+- **SpringDoc OpenAPI**
+- **JUnit 5** & **Mockito**
+- **Docker** & **Docker Compose**
+- **MySQL 8.0**
+- **H2 Database** (for testing)
 
----
+## 📦 Prerequisites
 
-## 🧩 Estructura del Proyecto
+- JDK 17 or later
+- Maven 3.6+
+- Docker & Docker Compose (for containerized deployment)
+- MySQL 8.0 (for local development without Docker)
+
+## 🚀 Getting Started
+
+### Local Development (Without Docker)
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/your-username/pet-store.git
+   cd pet-store
+   ```
+
+2. **Configure the database**
+   - Create a MySQL database named `petstore`
+   - Update `application.properties` with your database credentials
+
+3. **Build and run the application**
+   ```bash
+   mvn spring-boot:run
+   ```
+
+4. **Access the application**
+   - API: http://localhost:8080
+   - Swagger UI: http://localhost:8080/swagger-ui.html
+   - Actuator: http://localhost:8080/actuator
+
+### Docker Deployment
+
+1. **Build and start containers**
+   ```bash
+   # Make the script executable (Linux/Mac)
+   chmod +x docker-build-and-run.sh
+   
+   # Start the application
+   ./docker-build-and-run.sh start
+   ```
+
+2. **Stop the application**
+   ```bash
+   ./docker-build-and-run.sh stop
+   ```
+
+3. **View logs**
+   ```bash
+   ./docker-build-and-run.sh logs
+   ```
+
+## 🔒 Authentication
+
+The API uses JWT for authentication. To access protected endpoints:
+
+1. Register a new user:
+   ```http
+   POST /api/v1/auth/register
+   Content-Type: application/json
+   
+   {
+     "firstname": "John",
+     "lastname": "Doe",
+     "email": "john.doe@example.com",
+     "password": "password123"
+   }
+   ```
+
+2. Login to get a token:
+   ```http
+   POST /api/v1/auth/authenticate
+   Content-Type: application/json
+   
+   {
+     "email": "john.doe@example.com",
+     "password": "password123"
+   }
+   ```
+
+3. Use the token in subsequent requests:
+   ```
+   Authorization: Bearer <your-jwt-token>
+   ```
+
+## 📚 API Documentation
+
+API documentation is available at:
+- Swagger UI: http://localhost:8080/swagger-ui.html
+- OpenAPI JSON: http://localhost:8080/v3/api-docs
+
+## 🧪 Testing
+
+### Run Unit Tests
+```bash
+mvn test
+```
+
+### Run Integration Tests
+```bash
+mvn verify -Pintegration-test
+```
+
+### Run All Tests with Coverage
+```bash
+mvn clean verify jacoco:report
+```
+
+## � Monitoring
+
+Spring Boot Actuator endpoints are available at `/actuator`:
+- Health: `/actuator/health`
+- Metrics: `/actuator/metrics`
+- Info: `/actuator/info`
+
+## 🏗️ Project Structure
 
 ```
 src/
-├── controller/
-│   ├── Controladora.java         # Lógica de negocio
-│   ├── Duenio.java               # Entidad Dueño
-│   └── Mascota.java              # Entidad Mascota
-├── model/
-│   ├── ControladoraPersistencia.java  # Controladora JPA (no incluida en este README)
-│   └── DuenioJpaController.java       # Controlador JPA para Dueño
-└── resources/
-    └── META-INF/persistence.xml       # Configuración de la unidad de persistencia
+├── main/
+│   ├── java/com/mycompany/petstore/
+│   │   ├── config/           # Configuration classes
+│   │   ├── controller/       # REST controllers
+│   │   ├── dto/              # Data Transfer Objects
+│   │   ├── exception/        # Exception handling
+│   │   ├── model/            # JPA entities
+│   │   ├── repository/       # JPA repositories
+│   │   ├── security/         # Security configuration
+│   │   ├── service/          # Business logic
+│   │   └── PetStoreApplication.java
+│   └── resources/
+│       ├── application.properties
+│       └── application-docker.yml
+└── test/                     # Test classes
 ```
 
----
+## 📝 Environment Variables
 
-## ✅ Funcionalidades
+| Variable | Description | Default |
+|----------|-------------|---------|
+| `SPRING_DATASOURCE_URL` | Database URL | `jdbc:mysql://localhost:3306/petstore` |
+| `SPRING_DATASOURCE_USERNAME` | Database username | `petuser` |
+| `SPRING_DATASOURCE_PASSWORD` | Database password | `petpassword` |
+| `JWT_SECRET` | Secret key for JWT | Random UUID |
+| `JWT_EXPIRATION` | JWT expiration time in ms | `86400000` (24h) |
 
-* Crear una nueva mascota con su dueño asociado.
-* Listar todas las mascotas registradas.
-* Eliminar una mascota por su número de cliente.
-* Modificar datos de una mascota y su dueño.
-* Buscar una mascota por su número de cliente.
+## 🤝 Contributing
 
----
+1. Fork the project
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 🛠️ Configuración del Proyecto
+## 📄 License
 
-### 1. Clonar el repositorio
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-```bash
-git clone https://github.com/tu-usuario/peluqueria-canina.git
-cd peluqueria-canina
-```
+## 🙏 Acknowledgments
 
-### 2. Configurar la base de datos MySQL
-
-Crea una base de datos en MySQL, por ejemplo:
-
-```sql
-CREATE DATABASE peluqueria_canina;
-```
-
-Configura `persistence.xml` con tus credenciales de conexión:
-
-```xml
-<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/peluqueria_canina"/>
-<property name="javax.persistence.jdbc.user" value="root"/>
-<property name="javax.persistence.jdbc.password" value="tu_contraseña"/>
-```
-
-### 3. Compilar y ejecutar
-
-```bash
-mvn clean install
-```
-
-Puedes ejecutar la aplicación desde tu IDE o con:
-
-```bash
-mvn exec:java
-```
-
----
-
-## 📄 Clases Principales
-
-### `Controladora.java`
-
-Clase principal de lógica. Coordina la creación, edición, eliminación y recuperación de mascotas y sus dueños.
-
-### `Mascota.java`
-
-Entidad JPA con atributos como nombre, raza, color, alergias, atención especial y relación con un dueño.
-
-### `Duenio.java`
-
-Entidad JPA con atributos como nombre y teléfono.
-
-### `DuenioJpaController.java`
-
-Controlador JPA para operaciones de persistencia de la entidad `Duenio`.
-
----
-
-## 🧪 Pruebas
-
-Actualmente, el proyecto no incluye pruebas automatizadas. Puedes agregar pruebas JUnit para validar el comportamiento de la lógica en `Controladora`.
-
----
-
-## 📌 Notas
-* El crédito es del canal TODOCODE.
-* Asegúrate de tener el servidor MySQL corriendo antes de ejecutar la aplicación.
-* Las relaciones entre entidades están definidas con anotaciones JPA (`@OneToOne`).
-* El campo `num_cliente` es generado automáticamente como ID de la mascota.
-
----
-
-
+- Spring Boot Team
+- All Contributors
+- Original project by TODOCODE

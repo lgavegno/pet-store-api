@@ -1,0 +1,53 @@
+# Maven
+target/
+pom.xml.versionsBackup
+pom.xml.*
+
+# IntelliJ IDEA
+.idea/
+*.iml
+*.iws
+*.ipr
+*.idea_modules/
+
+# Eclipse
+.classpath
+.project
+.settings/
+bin/
+
+# VS Code
+.vscode/
+
+# Logs
+*.log
+logs/
+
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Git
+.git/
+.gitignore
+
+# Docker Compose
+docker-compose.override.yml
+
+# Local configuration files
+*.properties
+*.yml
+*.yaml
+!application-docker.yml
+!application.yml
+
+# Application specific
+HELP.md
+mvnw
+mvnw.cmd
+.gitattributes
